@@ -6,26 +6,23 @@ import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-export default function Signup() {
-    const router = useRouter()
+export default function Login() {
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const user = Object.fromEntries(formData.entries());
         console.log(user)
-        const { data, error } = await authClient.signUp.email({
-            name: user.name, // required
+        const { data, error } = await authClient.signIn.email({
             email: user.email, // required
             password: user.password, // required
-            image: user.image,
+            callbackURL:'/',
         });
 
         if (data) {
-            toast.success('Create Account Successfully')
-            router.push('/')
+            toast.success('Login Successfully')
         }
         if (error) {
-            alert('failed')
+            toast.error('failed')
         }
     };
 
@@ -40,16 +37,8 @@ export default function Signup() {
             <div className="flex justify-center">
                 <Image src={logo} alt="logo" width={200} height={200}></Image>
             </div>
-            <h2 className="text-center font-bold text-[24px]">Create New Account</h2>
+            <h2 className="text-center font-bold text-[24px]">Login</h2>
             <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
-                <TextField
-                    isRequired
-                    name="name"
-                    type="text"
-                >
-                    <Label>Name</Label>
-                    <Input placeholder="Enter your name" />
-                </TextField>
                 <TextField
                     isRequired
                     name="email"
@@ -66,14 +55,6 @@ export default function Signup() {
                     <Input placeholder="john@example.com" />
                     <FieldError />
                 </TextField>
-                <TextField
-                    name="image"
-                    type="url"
-                >
-                    <Label>ImageUrl</Label>
-                    <Input placeholder="ImageURl" />
-                </TextField>
-
                 <TextField
                     isRequired
                     minLength={8}

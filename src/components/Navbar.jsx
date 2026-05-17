@@ -63,8 +63,12 @@ const Navbar = () => {
                     </ul>
                     <div className="flex gap-1 items-center">
                         <ThemeSwicth></ThemeSwicth>
-                        <Button className='rounded-md'>Login</Button>
-                        <Button variant="outline" className='rounded-md'>Register</Button>
+                        <Link href='/login'>
+                            <Button className='rounded-md'>Login</Button>
+                        </Link>
+                        <Link href='/register'>
+                            <Button variant="outline" className='rounded-md'>Register</Button>
+                        </Link>
                     </div>
                 </header>
                 {isMenuOpen && (
