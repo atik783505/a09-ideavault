@@ -5,6 +5,7 @@ import logo from '../../../public/images/ideavault_navbar (1).png'
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Signup() {
     const router = useRouter()
@@ -29,11 +30,11 @@ export default function Signup() {
         }
     };
 
-    // const handleGogle = async () => {
-    //     await authClient.signIn.social({
-    //         provider: "google",
-    //     });
-    // }
+    const handleGogle = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        });
+    }
 
     return (
         <Card className="max-w-96 mx-auto my-4">
@@ -106,8 +107,14 @@ export default function Signup() {
                 </div>
             </Form>
             <div className="mt-6">
-                <Button variant="outline" className='w-full rounded-none' >Continue With Google</Button>
+                <Button variant="outline" className='w-full rounded-none' onClick={handleGogle}>Continue With Google</Button>
             </div>
+            <h2 className="text-center text-slate-900/60 dark:text-white/60 text-sm font-medium">
+                Already have an account?
+                <Link href="/login">
+                    <span className="text-blue-600 font-semibold hover:underline">Login</span>
+                </Link>
+            </h2>
         </Card>
     );
 }

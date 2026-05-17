@@ -5,6 +5,7 @@ import logo from '../../../public/images/ideavault_navbar (1).png'
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Login() {
     const onSubmit = async (e) => {
@@ -15,7 +16,7 @@ export default function Login() {
         const { data, error } = await authClient.signIn.email({
             email: user.email, // required
             password: user.password, // required
-            callbackURL:'/',
+            callbackURL: '/',
         });
 
         if (data) {
@@ -25,6 +26,12 @@ export default function Login() {
             toast.error('failed')
         }
     };
+
+    const handleGogle = async () => {
+        await authClient.signIn.social({
+            provider: "google",
+        });
+    }
 
     // const handleGogle = async () => {
     //     await authClient.signIn.social({
@@ -82,13 +89,19 @@ export default function Login() {
 
                 <div className="flex justify-center w-full rounded-none">
                     <Button className='rounded-none w-full' type="submit">
-                        Create Account
+                        Login
                     </Button>
                 </div>
             </Form>
             <div className="mt-6">
-                <Button variant="outline" className='w-full rounded-none' >Continue With Google</Button>
+                <Button variant="outline" className='w-full rounded-none' onClick={handleGogle}>Continue With Google</Button>
             </div>
+            <h2 className="text-center text-slate-900/60 dark:text-white/60 text-sm font-medium">
+                Dont have an account?
+                <Link href="/register">
+                    <span className="text-blue-600 font-semibold hover:underline">Register</span>
+                </Link>
+            </h2>
         </Card>
     );
 }

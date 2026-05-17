@@ -5,9 +5,13 @@ import ThemeSwicth from "./ThemeSwicth";
 import Image from "next/image";
 import logo from '../../public/images/ideavault_navbar (1).png'
 import { Button } from "@heroui/react";
+import { authClient } from "@/lib/auth-client";
 
 
 const Navbar = () => {
+    const { data: session } = authClient.useSession()
+    console.log(session)
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const links = <>
@@ -67,7 +71,7 @@ const Navbar = () => {
                             <Button className='rounded-md'>Login</Button>
                         </Link>
                         <Link href='/register'>
-                            <Button variant="outline" className='rounded-md'>Register</Button>
+                            <Button variant="outline" className='rounded-md hidden md:flex'>Register</Button>
                         </Link>
                     </div>
                 </header>
