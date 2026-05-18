@@ -6,6 +6,8 @@ import Image from "next/image";
 import logo from '../../public/images/ideavault_navbar (1).png'
 import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
+import UserAvatarDropdown from "./UserDropDown";
+import CustomTrigger from "./UserDropDown";
 
 
 const Navbar = () => {
@@ -15,23 +17,26 @@ const Navbar = () => {
 
 
     const user = session?.user
-    console.log(user)
-
+   
     const links = <>
         <li>
-            <Link href="#">Features</Link>
+            <Link href="/">Home</Link>
         </li>
         <li>
-            <Link href="#">Pricing</Link>
+            <Link href="/all-ideas">Ideas</Link>
         </li>
         <li>
-            <Link href="#">ideas</Link>
+            <Link href="/add-ideas">Add Idea</Link>
         </li>
-        <Image src={user?.image} alt="image" width={100} height={100}></Image>
+        <li>
+            <Link href="/my-ideas">My Ideas</Link>
+        </li>
+        <li>
+            <Link href="/my-interactions">My Interactions</Link>
+        </li>
     </>
 
     return (
-        <div>
             <nav className="sticky top-0 z-40 border-b  bg-white/10 backdrop-blur-md border border-white/20 shadow-lg rounded-full w-11/12 mx-auto mt-3">
                 <header className="flex h-16 items-center justify-between px-6">
                     <div className="flex items-center gap-4">
@@ -71,14 +76,18 @@ const Navbar = () => {
                     </ul>
                     <div className="flex gap-1 items-center">
                         <ThemeSwicth></ThemeSwicth>
-                        <Link href='/login'>
-                            <Button className='rounded-md'>Login</Button>
-                        </Link>
-                        <Link href='/register'>
-                            <Button variant="outline" className='rounded-md hidden md:flex'>Register</Button>
-                        </Link>
+                        {
+                            user ? <CustomTrigger user={user}></CustomTrigger> : <>
+                                <Link href='/login'>
+                                    <Button className='rounded-md'>Login</Button>
+                                </Link>
+                                <Link href='/register'>
+                                    <Button variant="outline" className='rounded-md hidden md:flex'>Register</Button>
+                                </Link>
+                            </>
+                        }
                     </div>
-                 
+
                 </header>
                 {isMenuOpen && (
                     <div className="border-t border-separator md:hidden">
@@ -88,7 +97,6 @@ const Navbar = () => {
                     </div>
                 )}
             </nav>
-        </div>
     );
 };
 
