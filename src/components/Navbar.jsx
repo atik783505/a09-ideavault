@@ -4,15 +4,18 @@ import { useState } from "react";
 import ThemeSwicth from "./ThemeSwicth";
 import Image from "next/image";
 import logo from '../../public/images/ideavault_navbar (1).png'
-import { Button } from "@heroui/react";
+import { Avatar, Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/react";
 import { authClient } from "@/lib/auth-client";
 
 
 const Navbar = () => {
-    const { data: session } = authClient.useSession()
-    console.log(session)
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { data: session, isPending } = authClient.useSession();
+
+
+    const user = session?.user
+    console.log(user)
 
     const links = <>
         <li>
@@ -24,6 +27,7 @@ const Navbar = () => {
         <li>
             <Link href="#">ideas</Link>
         </li>
+        <Image src={user?.image} alt="image" width={100} height={100}></Image>
     </>
 
     return (
@@ -74,6 +78,7 @@ const Navbar = () => {
                             <Button variant="outline" className='rounded-md hidden md:flex'>Register</Button>
                         </Link>
                     </div>
+                 
                 </header>
                 {isMenuOpen && (
                     <div className="border-t border-separator md:hidden">
