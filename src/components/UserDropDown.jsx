@@ -1,8 +1,14 @@
-import { signOut } from "@/lib/auth-client";
-import {ArrowRightFromSquare, Gear, Persons} from "@gravity-ui/icons";
-import {Avatar, Dropdown, Label} from "@heroui/react";
 
-export default function CustomTrigger({user}) {
+import { signOut } from "@/lib/auth-client";
+import { ArrowRightFromSquare, Gear, Persons } from "@gravity-ui/icons";
+import { Avatar, Dropdown, Label } from "@heroui/react";
+
+export default function CustomTrigger({ user }) {
+
+  const handleSignout = async () => {
+    await signOut()
+    window.location.href = "/";
+  }
   return (
     <Dropdown>
       <Dropdown.Trigger className="rounded-full">
@@ -51,11 +57,11 @@ export default function CustomTrigger({user}) {
               <Persons className="size-3.5 text-muted" />
             </div>
           </Dropdown.Item>
-          <Dropdown.Item id="logout" textValue="Logout" variant="danger" onClick={() => signOut()}>
+          <Dropdown.Item id="logout" textValue="Logout" variant="danger" onClick={handleSignout}>
             <div className="flex w-full items-center justify-between gap-2">
               <Label>
                 Log Out
-                </Label>
+              </Label>
               <ArrowRightFromSquare className="size-3.5 text-danger" />
             </div>
           </Dropdown.Item>

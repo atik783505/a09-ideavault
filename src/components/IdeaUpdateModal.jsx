@@ -3,9 +3,11 @@
 import { Envelope } from "@gravity-ui/icons";
 import { Button, Input, Label, Modal, Surface, TextArea, TextField, Select, ListBox } from "@heroui/react";
 import { SquarePen } from "lucide-react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export function IdeaUpdateModal({ idea }) {
+    const router = useRouter()
 
     const handleUpdateModal = async (e) => {
         e.preventDefault();
@@ -21,6 +23,8 @@ export function IdeaUpdateModal({ idea }) {
         if(res.ok){
             toast.success('Updated Succesfully')
         }
+        router.refresh()
+        
     }
     return (
         <Modal>
