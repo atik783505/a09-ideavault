@@ -1,3 +1,4 @@
+import Comment from '@/components/Comment';
 import { Avatar, Button, Card, Chip, ProgressBar } from '@heroui/react';
 import { AlertTriangle, CheckCircle2, FileText, Mail, Shield, Users, Wallet } from 'lucide-react';
 import Image from 'next/image';
@@ -160,10 +161,12 @@ const IdeaDetails = async ({ params }) => {
                                     Connect with Founder
                                 </Button>
                             </div>
-
                         </div>
                     </Card>
                 </div>
+            </div>
+            <div>
+                {/* <Comment></Comment> */}
             </div>
         </div>
     );
