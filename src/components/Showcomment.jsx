@@ -1,8 +1,18 @@
 import { Persons } from '@gravity-ui/icons';
-import { Avatar, Card } from '@heroui/react';
+import { Avatar, Button, Card } from '@heroui/react';
+import { Edit2, Trash2 } from 'lucide-react';
 import React from 'react';
+import Comment from './Comment';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+
 
 const Showcomment = async ({ data }) => {
+    const session = await auth.api.getSession({
+        headers: await headers()
+    })
+    const user = session?.user
+    console.log(session)
 
     const res = await fetch(`http://localhost:5000/comment/${data._id}`)
     const comments = await res.json()
@@ -16,46 +26,72 @@ const Showcomment = async ({ data }) => {
     }
     return (
         <div>
+            <Comment data={data} comments={comments}></Comment>
             {
                 comments.map(comment => <Card
                     key={comment._id}
-                    className="border border-success-200/50 dark:border-success-800/20 bg-success-50/20 dark:bg-success-950/10 shadow-none rounded-2xl w-full max-w-2xl transition-all duration-300 hover:border-success-300 dark:hover:border-success-700/40"
+                    className="border border-success-200/50 dark:border-success-800/20 bg-success-50/20 dark:bg-success-950/10 shadow-none rounded-2xl w-full max-w-3xl transition-all duration-300 hover:border-success-300 dark:hover:border-success-700/40 mb-6"
                 >
-                    <div className="p-5 flex flex-col gap-3">
+                    <div className="flex flex-col gap-2.5">
 
-                        {/* হেডার পার্ট: ইউজার ইনফো ও টাইমস্ট্যাম্প */}
-                        <div className="flex items-center justify-between gap-3 border-b border-default-100 dark:border-default-800/60 pb-2.5">
+                        <div className="flex items-center justify-between gap-3">
+
                             <div className="flex items-center gap-3">
+                                <Avatar>
+                                    <Avatar.Image
+                                        alt={comment?.userName || "User"}
+                                        src={comment?.userImg}
+                                        referrerPolicy="no-referrer"
+                                    />
+                                    <Avatar.Fallback delayMs={600}>
+                                        {comment?.userName ? comment.userName.slice(0, 2).toUpperCase() : "JD"}
+                                    </Avatar.Fallback>
+                                </Avatar>
 
-                                {/* ইউজার অবতার */}
-                                <Avatar
-                                    name={comment.userName}
-                                    size="sm"
-                                    className="bg-success-100/80 text-success-700 font-bold dark:bg-success-950/60 dark:text-success-400"
-                                    icon={<Persons className="size-4" />}
-                                />
-
-                                {/* ইউজারের নাম এবং মোবাইল টাইমস্ট্যাম্প */}
-                                <div>
-                                    <h4 className="text-sm font-semibold text-default-800 dark:text-default-200 leading-tight">
-                                        {comment.userName}
-                                    </h4>
-                                    <span className="text-[11px] text-default-400 dark:text-default-500 md:hidden block mt-0.5">
-                                        {formatDate(comment.createdAt)}
-                                    </span>
-                                </div>
+                                <h4 className="text-sm font-semibold text-default-800 dark:text-default-200 leading-tight">
+                                    {comment.userName}
+                                </h4>
                             </div>
 
-                            {/* ডেস্কটপ স্ক্রিনের জন্য ডানপাশের টাইমস্ট্যাম্প ক্যাপসুল */}
-                            <span className="text-xs text-default-500 dark:text-default-400 hidden md:block bg-default-100/70 dark:bg-default-800/50 px-2.5 py-1 rounded-full font-medium">
+                            {
+                                user.id === comment.userId
+                                    ?
+                                    <div className="flex items-center gap-1.5">
+                                        <Button
+                                            isIconOnly
+                                            size="sm"
+                                            variant="light"
+                                            className="text-default-400 hover:text-default-700 dark:hover:text-default-200 rounded-xl"
+                                            aria-label="Edit comment"
+                                        >
+                                            <Edit2 className="size-3.5" />
+                                        </Button>
+
+                                        <Button
+                                            isIconOnly
+                                            size="sm"
+                                            variant="light"
+                                            className="text-default-400 hover:text-danger rounded-xl"
+
+                                            aria-label="Delete comment"
+                                        >
+                                            <Trash2 className="size-3.5" />
+                                        </Button>
+                                    </div>
+                                    :''
+                               }
+
+                        </div>
+
+                        <p className="text-default-700 dark:text-default-300 leading-relaxed text-sm md:text-base whitespace-pre-line pl-1">
+                            {comment.commentText}
+                        </p>
+
+                        <div className="pl-1 mt-0.5 opacity-70">
+                            <span className="text-[11px] md:text-xs text-default-400 dark:text-default-500 font-medium tracking-wide">
                                 {formatDate(comment.createdAt)}
                             </span>
                         </div>
-
-                        {/* কমেন্ট টেক্সট এরিয়া */}
-                        <p className="text-default-600 dark:text-default-300 leading-relaxed text-sm md:text-base whitespace-pre-line pl-1">
-                            {comment.commentText}
-                        </p>
 
                     </div>
                 </Card>)

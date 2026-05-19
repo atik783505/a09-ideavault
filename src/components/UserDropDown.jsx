@@ -18,7 +18,7 @@ export default function CustomTrigger({ user }) {
             src={user?.image}
             referrerPolicy="no-referrer"
           />
-          <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
+          <Avatar.Fallback delayMs={600}>{user.name.slice(0, 2).toUpperCase()}</Avatar.Fallback>
         </Avatar>
       </Dropdown.Trigger>
       <Dropdown.Popover>

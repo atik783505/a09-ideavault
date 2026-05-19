@@ -5,36 +5,40 @@ import { Button, Form, Label, TextArea } from '@heroui/react';
 import React from 'react';
 import toast from 'react-hot-toast';
 
-const Comment = ({ data }) => {
+const Comment = ({ data,comments }) => {
+
+
+    const {data:session} = useSession()
+    const user = session?.user
 
     const handleComment = async (e) => {
         e.preventDefault()
         const commentText = e.target.comment.value
-        console.log(commentText)
         const finalData = {
             ideaId: data._id,
-            userName: data.userName,
-            userEmail: data.userEmail,
-            userId: data.userId,
-            userImg: data.userImage,
+            title:data.title,
+            userName: user?.name,
+            userEmail: user?.email,
+            userId: user?.id,
+            userImg: user?.image,
             commentText
         }
+        console.log(finalData)
         const res = await fetch('http://localhost:5000/comment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
-            },body:JSON.stringify(finalData)
+            }, body: JSON.stringify(finalData)
         })
-        console.log(finalData)
-        if(res.ok){
+        if (res.ok) {
             toast.success('commented success')
         }
     }
 
     return (
-        <div className="w-full max-w-2xl mt-6">
+        <div className="w-full max-w-3xl mt-8">
             <Form className="w-full flex flex-col gap-3" onSubmit={handleComment}>
-                <Label>Comment</Label>
+                <Label className='text-[24px]'>Comments({comments.length})</Label>
                 <TextArea
                     name="comment"
                     label="Comment"
@@ -50,10 +54,10 @@ const Comment = ({ data }) => {
                     <Button
                         type="submit"
                         color="primary"
-                        className="font-semibold px-6 rounded-xl flex items-center gap-1.5"
+                        className="font-semibold px-6 rounded-xl flex items-center gap-1.5 mb-6"
                     >
                         <Check className="size-4" />
-                        Post
+                        Post Comment
                     </Button>
                 </div>
             </Form>

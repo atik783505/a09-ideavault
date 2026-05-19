@@ -167,7 +167,6 @@ const IdeaDetails = async ({ params }) => {
                 </div>
             </div>
             <div>
-                <Comment data={data}></Comment>
                 <Showcomment data={data}></Showcomment>
             </div>
         </div>
