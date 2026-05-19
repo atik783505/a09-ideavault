@@ -1,4 +1,5 @@
 import Comment from '@/components/Comment';
+import Showcomment from '@/components/Showcomment';
 import { Avatar, Button, Card, Chip, ProgressBar } from '@heroui/react';
 import { AlertTriangle, CheckCircle2, FileText, Mail, Shield, Users, Wallet } from 'lucide-react';
 import Image from 'next/image';
@@ -166,7 +167,8 @@ const IdeaDetails = async ({ params }) => {
                 </div>
             </div>
             <div>
-                {/* <Comment></Comment> */}
+                <Comment data={data}></Comment>
+                <Showcomment data={data}></Showcomment>
             </div>
         </div>
     );

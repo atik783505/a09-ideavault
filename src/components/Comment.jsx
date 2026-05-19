@@ -1,20 +1,42 @@
+'use client'
+import { useSession } from '@/lib/auth-client';
 import { Check } from '@gravity-ui/icons';
-import { Button, Form, Label, TextArea, TextField } from '@heroui/react';
+import { Button, Form, Label, TextArea } from '@heroui/react';
 import React from 'react';
+import toast from 'react-hot-toast';
 
-const Comment = () => {
+const Comment = ({ data }) => {
 
- const handleComment = (e) => {
-    e.preventDefault
-
- }
+    const handleComment = async (e) => {
+        e.preventDefault()
+        const commentText = e.target.comment.value
+        console.log(commentText)
+        const finalData = {
+            ideaId: data._id,
+            userName: data.userName,
+            userEmail: data.userEmail,
+            userId: data.userId,
+            userImg: data.userImage,
+            commentText
+        }
+        const res = await fetch('http://localhost:5000/comment', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },body:JSON.stringify(finalData)
+        })
+        console.log(finalData)
+        if(res.ok){
+            toast.success('commented success')
+        }
+    }
 
     return (
         <div className="w-full max-w-2xl mt-6">
-            <Form className="w-full flex flex-col gap-3" onClick={handleComment}>
+            <Form className="w-full flex flex-col gap-3" onSubmit={handleComment}>
                 <Label>Comment</Label>
                 <TextArea
-                    name="bio"
+                    name="comment"
                     label="Comment"
                     placeholder="Tell us about yourself..."
                     variant="bordered"
