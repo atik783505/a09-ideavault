@@ -1,22 +1,25 @@
 'use client'
 
+import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 
-export function DeleteButton({idea}) {
+export function DeleteButton({ idea }) {
     const router = useRouter()
     const handleDelete = async () => {
+        const { data: tokenData } = await authClient.token()
         const res = await fetch(`http://localhost:5000/myideas/${idea._id}`, {
             method: 'DELETE',
             headers: {
-                'content-type': 'application/json' // এখানে ':' হবে এবং ডাবল 'p' হবে
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData.token}`
             },
         })
-        const data =await res.json()
+        const data = await res.json()
         console.log(data)
         router.refresh()
-        
+
     }
     return (
         <AlertDialog>

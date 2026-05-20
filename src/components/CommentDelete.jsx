@@ -1,4 +1,5 @@
 'use client'
+import { authClient } from "@/lib/auth-client";
 import { Button } from "@heroui/react";
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -8,10 +9,12 @@ import toast from "react-hot-toast";
 const CommentDelete = ({ comment }) => {
     const router = useRouter()
     const handleDelete = async () => {
+         const {data:tokenData} = await authClient.token()
         const res = await fetch(`http://localhost:5000/comment/${comment._id}`, {
             method: 'DELETE',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization:`Bearer ${tokenData.token}`
             },
         })
         if(res.ok){

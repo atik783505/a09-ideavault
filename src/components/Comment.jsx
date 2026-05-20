@@ -1,5 +1,5 @@
 'use client'
-import { useSession } from '@/lib/auth-client';
+import { authClient, useSession } from '@/lib/auth-client';
 import { Check } from '@gravity-ui/icons';
 import { Button, Form, Label, TextArea } from '@heroui/react';
 import { useRouter } from 'next/navigation';
@@ -24,11 +24,12 @@ const Comment = ({ data, comments }) => {
             userImg: user?.image,
             commentText
         }
-        console.log(finalData)
+        const { data: tokenData } = await authClient.token()
         const res = await fetch('http://localhost:5000/comment', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData.token}`
             }, body: JSON.stringify(finalData)
         })
         if (res.ok) {

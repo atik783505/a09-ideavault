@@ -12,14 +12,13 @@ import {
     Card,
     CardHeader,
 } from '@heroui/react';
-import { useSession } from '@/lib/auth-client';
+import { authClient, useSession } from '@/lib/auth-client';
 
 const AddIdeaPage = () => {
     const [loading, setLoading] = useState(false);
 
     const { data } = useSession()
     const user = data?.user
-    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -27,28 +26,28 @@ const AddIdeaPage = () => {
 
         const formData = new FormData(e.currentTarget);
         const ideaData = Object.fromEntries(formData.entries());
-        const userData ={
-            userName:user?.name,
-            userEmail:user?.email,
-            userId:user?.id,
-            userImage:user?.image,
+        const userData = {
+            userName: user?.name,
+            userEmail: user?.email,
+            userId: user?.id,
+            userImage: user?.image,
         }
 
         const finalData = {
             ...ideaData,
             ...userData
         }
-        console.log(finalData)
-
 
         if (ideaData.tags) {
             ideaData.tags = ideaData.tags.split(',').map(tag => tag.trim());
         }
+        const { data: tokenData } = await authClient.token()
 
         const res = await fetch('http://localhost:5000/ideas', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${tokenData.token}`
             },
             body: JSON.stringify(finalData)
         })

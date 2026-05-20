@@ -14,9 +14,15 @@ const Showcomment = async ({ data }) => {
         headers: await headers()
     })
     const user = session?.user
-    console.log(session)
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
 
-    const res = await fetch(`http://localhost:5000/comment/${data._id}`)
+    const res = await fetch(`http://localhost:5000/comment/${data._id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const comments = await res.json()
     const formatDate = (dateString) => {
         if (!dateString) return "";
@@ -60,7 +66,7 @@ const Showcomment = async ({ data }) => {
                                 user.id === comment.userId
                                     ?
                                     <div className="flex items-center gap-1.5">
-                                       <EditComment comment={comment}></EditComment>
+                                        <EditComment comment={comment}></EditComment>
                                         <CommentDelete comment={comment}></CommentDelete>
                                     </div>
                                     : ''

@@ -1,16 +1,22 @@
-import Comment from '@/components/Comment';
+
 import Showcomment from '@/components/Showcomment';
+import { auth } from '@/lib/auth';
 import { Avatar, Button, Card, Chip, ProgressBar } from '@heroui/react';
 import { AlertTriangle, CheckCircle2, FileText, Mail, Shield, Users, Wallet } from 'lucide-react';
+import { ApiError } from 'next/dist/server/api-utils';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
 const IdeaDetails = async ({ params }) => {
-
     const { id } = await params
+    const {token} = await auth.api.getToken({
+        headers : await headers()
+    })
+    console.log(token)
     const res = await fetch(`http://localhost:5000/ideas/${id}`,{
         headers:{
-            authorization: 'logged in'
+            authorization: `Bearer ${token}`
         }
     })
     const data = await res.json()

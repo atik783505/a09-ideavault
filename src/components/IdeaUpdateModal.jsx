@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Envelope } from "@gravity-ui/icons";
 import { Button, Input, Label, Modal, Surface, TextArea, TextField, Select, ListBox } from "@heroui/react";
 import { SquarePen } from "lucide-react";
@@ -13,11 +14,12 @@ export function IdeaUpdateModal({ idea }) {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
         const updatedIdeaData = Object.fromEntries(formData.entries());
-        console.log("Updated Data:", updatedIdeaData);
+         const {data:tokenData} = await authClient.token()
         const res = await fetch(`http://localhost:5000/myideas/${idea._id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization:`Bearer ${tokenData.token}`
             },body:JSON.stringify(updatedIdeaData)
         })
         if(res.ok){

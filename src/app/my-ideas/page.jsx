@@ -10,16 +10,22 @@ const Myideas = async () => {
         headers: await headers()
     })
     const user = session?.user
-    console.log(user.id)
-    const res = await fetch(`http://localhost:5000/myideas/${user?.id}`)
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+    const res = await fetch(`http://localhost:5000/myideas/${user?.id}`, {
+        headers: {
+            authorization: `Bearer ${token}`
+        }
+    })
     const data = await res.json()
     console.log(data)
     return (
-        <div className='w-11/12 mx-auto my-5'> 
+        <div className='w-11/12 mx-auto my-5'>
             <h2 className='font-bold text-[40px] text-center'>My Ideas</h2>
-                {
-                    data.map(idea => <MyideaCard key={idea._id} idea={idea}></MyideaCard>)
-                }
+            {
+                data.map(idea => <MyideaCard key={idea._id} idea={idea}></MyideaCard>)
+            }
         </div>
     );
 };
