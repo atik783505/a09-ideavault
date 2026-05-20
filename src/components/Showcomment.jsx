@@ -6,6 +6,7 @@ import Comment from './Comment';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import CommentDelete from './CommentDelete';
+import EditComment from './EditComment';
 
 
 const Showcomment = async ({ data }) => {
@@ -59,15 +60,7 @@ const Showcomment = async ({ data }) => {
                                 user.id === comment.userId
                                     ?
                                     <div className="flex items-center gap-1.5">
-                                        <Button
-                                            isIconOnly
-                                            size="sm"
-                                            variant="light"
-                                            className="text-default-400 hover:text-default-700 dark:hover:text-default-200 rounded-xl"
-                                            aria-label="Edit comment"
-                                        >
-                                            <Edit2 className="size-3.5" />
-                                        </Button>
+                                       <EditComment comment={comment}></EditComment>
                                         <CommentDelete comment={comment}></CommentDelete>
                                     </div>
                                     : ''
