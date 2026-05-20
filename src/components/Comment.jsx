@@ -2,13 +2,14 @@
 import { useSession } from '@/lib/auth-client';
 import { Check } from '@gravity-ui/icons';
 import { Button, Form, Label, TextArea } from '@heroui/react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
 
-const Comment = ({ data,comments }) => {
+const Comment = ({ data, comments }) => {
+    const router = useRouter()
 
-
-    const {data:session} = useSession()
+    const { data: session } = useSession()
     const user = session?.user
 
     const handleComment = async (e) => {
@@ -16,7 +17,7 @@ const Comment = ({ data,comments }) => {
         const commentText = e.target.comment.value
         const finalData = {
             ideaId: data._id,
-            title:data.title,
+            title: data.title,
             userName: user?.name,
             userEmail: user?.email,
             userId: user?.id,
@@ -33,6 +34,8 @@ const Comment = ({ data,comments }) => {
         if (res.ok) {
             toast.success('commented success')
         }
+        router.refresh()
+
     }
 
     return (

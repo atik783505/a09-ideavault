@@ -1,10 +1,11 @@
-import { Persons } from '@gravity-ui/icons';
+
 import { Avatar, Button, Card } from '@heroui/react';
 import { Edit2, Trash2 } from 'lucide-react';
 import React from 'react';
 import Comment from './Comment';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
+import CommentDelete from './CommentDelete';
 
 
 const Showcomment = async ({ data }) => {
@@ -23,6 +24,7 @@ const Showcomment = async ({ data }) => {
             day: "numeric",
             year: "numeric",
         });
+
     }
     return (
         <div>
@@ -66,20 +68,10 @@ const Showcomment = async ({ data }) => {
                                         >
                                             <Edit2 className="size-3.5" />
                                         </Button>
-
-                                        <Button
-                                            isIconOnly
-                                            size="sm"
-                                            variant="light"
-                                            className="text-default-400 hover:text-danger rounded-xl"
-
-                                            aria-label="Delete comment"
-                                        >
-                                            <Trash2 className="size-3.5" />
-                                        </Button>
+                                        <CommentDelete comment={comment}></CommentDelete>
                                     </div>
-                                    :''
-                               }
+                                    : ''
+                            }
 
                         </div>
 
