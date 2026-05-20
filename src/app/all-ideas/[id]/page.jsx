@@ -8,7 +8,11 @@ import React from 'react';
 const IdeaDetails = async ({ params }) => {
 
     const { id } = await params
-    const res = await fetch(`http://localhost:5000/ideas/${id}`)
+    const res = await fetch(`http://localhost:5000/ideas/${id}`,{
+        headers:{
+            authorization: 'logged in'
+        }
+    })
     const data = await res.json()
     console.log(data)
 
@@ -59,7 +63,7 @@ const IdeaDetails = async ({ params }) => {
 
                 <div className="md:col-span-5 rounded-3xl w-full h-64 md:h-80 overflow-hidden bg-default-100 shadow-lg relative">
                     <Image
-                        src={data.imageUrl || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe"}
+                        src={data.imageUrl}
                         alt={data.title}
                         width={600}
                         height={600}

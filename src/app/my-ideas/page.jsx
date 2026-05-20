@@ -7,7 +7,7 @@ import React from 'react';
 const Myideas = async () => {
 
     const session = await auth.api.getSession({
-        headers: await headers() // সার্ভারের হেডার পাস করতে হয়
+        headers: await headers()
     })
     const user = session?.user
     console.log(user.id)

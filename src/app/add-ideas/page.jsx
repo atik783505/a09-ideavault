@@ -13,7 +13,6 @@ import {
     CardHeader,
 } from '@heroui/react';
 import { useSession } from '@/lib/auth-client';
-import { email } from 'better-auth';
 
 const AddIdeaPage = () => {
     const [loading, setLoading] = useState(false);

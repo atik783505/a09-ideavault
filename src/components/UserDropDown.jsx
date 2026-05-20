@@ -42,7 +42,7 @@ export default function CustomTrigger({ user }) {
           <Dropdown.Item id="dashboard" textValue="Dashboard">
             <Label>Dashboard</Label>
           </Dropdown.Item>
-          <Dropdown.Item id="profile" textValue="Profile">
+          <Dropdown.Item href="/profile" id="profile" textValue="Profile">
             <Label>Profile</Label>
           </Dropdown.Item>
           <Dropdown.Item id="settings" textValue="Settings">
