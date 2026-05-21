@@ -1,5 +1,8 @@
 import { LogoFacebook, LogoGithub, LogoLinkedin, LogoLinux } from '@gravity-ui/icons';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { FaXTwitter } from 'react-icons/fa6';
+import logo from '../../public/images/ideavault_navbar (1).png'
+import Image from 'next/image';
 
 const Footer = () => {
     return (
@@ -9,9 +12,7 @@ const Footer = () => {
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
                     <div className="space-y-4">
-                        <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-sky-400 dark:to-blue-500 bg-clip-text text-transparent">
-                            StartupHub
-                        </h2>
+                        <Image src={logo} alt='logo' width={400} height={400}></Image>
                         <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
                             IdeaVault is a secure space to share your startup ideas, collaborate with a vibrant community of builders, and bring your unique vision to life.
                         </p>
@@ -65,18 +66,18 @@ const Footer = () => {
                             <a href="#" className="p-2 rounded-lg bg-white/20 dark:bg-zinc-800/40 border border-white/20 dark:border-zinc-700/30 hover:bg-blue-400 hover:text-white dark:hover:bg-sky-400 transition-all text-slate-700 dark:text-zinc-300">
                                 <LogoLinkedin></LogoLinkedin>
                             </a>
-                            <a href="#" className="p-2 rounded-lg bg-white/20 dark:bg-zinc-800/40 border border-white/20 dark:border-zinc-700/30 hover:bg-blue-700 hover:text-white dark:hover:bg-blue-500 transition-all text-slate-700 dark:text-zinc-300">
+                            <a href="#" className="p-2 rounded-lg bg-white/20 dark:bg-zinc-800/40 border border-white/20 dark:border-zinc-700/30 hover:bg-slate-900 hover:text-white dark:hover:bg-zinc-700 transition-all text-slate-700 dark:text-zinc-300">
                                 <LogoGithub></LogoGithub>
                             </a>
                             <a href="#" className="p-2 rounded-lg bg-white/20 dark:bg-zinc-800/40 border border-white/20 dark:border-zinc-700/30 hover:bg-slate-900 hover:text-white dark:hover:bg-zinc-700 transition-all text-slate-700 dark:text-zinc-300">
-                                <LogoLinux></LogoLinux>
+                                <FaXTwitter />
                             </a>
                         </div>
                     </div>
 
                 </div>
                 <div className="max-w-7xl mx-auto mt-12 pt-6 border-t border-slate-900/5 dark:border-white/5 text-center md:flex md:justify-between md:items-center text-xs text-slate-500 dark:text-zinc-500">
-                    <p>© {new Date().getFullYear()} StartupHub. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} IdeaVault. All rights reserved.</p>
                     <div className="mt-2 md:mt-0 space-x-4">
                         <a href="#" className="hover:underline">Privacy Policy</a>
                         <a href="#" className="hover:underline">Terms of Service</a>

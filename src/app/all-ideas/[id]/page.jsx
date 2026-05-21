@@ -3,19 +3,23 @@ import Showcomment from '@/components/Showcomment';
 import { auth } from '@/lib/auth';
 import { Avatar, Button, Card, Chip, ProgressBar } from '@heroui/react';
 import { AlertTriangle, CheckCircle2, FileText, Mail, Shield, Users, Wallet } from 'lucide-react';
-import { ApiError } from 'next/dist/server/api-utils';
 import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
+export const metadata = {
+    title: "All Ideas",
+    description: "All Ideas",
+};
+
 const IdeaDetails = async ({ params }) => {
     const { id } = await params
-    const {token} = await auth.api.getToken({
-        headers : await headers()
+    const { token } = await auth.api.getToken({
+        headers: await headers()
     })
     console.log(token)
-    const res = await fetch(`http://localhost:5000/ideas/${id}`,{
-        headers:{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/ideas/${id}`, {
+        headers: {
             authorization: `Bearer ${token}`
         }
     })
@@ -56,15 +60,6 @@ const IdeaDetails = async ({ params }) => {
                     <p className="text-lg text-default-500 leading-relaxed font-normal mt-2">
                         {data.shortDescription}
                     </p>
-
-                    <div className="flex gap-3 mt-2">
-                        <button className="bg-primary text-white font-semibold px-6 py-2.5 rounded-xl shadow-md hover:opacity-90 transition">
-                            Invest in Idea
-                        </button>
-                        <button className="border-2 border-primary text-primary font-semibold px-6 py-2.5 rounded-xl hover:bg-primary/5 transition">
-                            Save to Vault
-                        </button>
-                    </div>
                 </div>
 
                 <div className="md:col-span-5 rounded-3xl w-full h-64 md:h-80 overflow-hidden bg-default-100 shadow-lg relative">
@@ -78,7 +73,7 @@ const IdeaDetails = async ({ params }) => {
                     />
                 </div>
             </div>
-            <div className='flex gap-4 items-center'>
+            <div className='flex flex-col md:flex-row gap-4 items-center'>
                 <div className="flex flex-col gap-6 mt-8">
 
                     <Card className="border border-danger-100/40 bg-danger-50/5 dark:bg-danger-950/10 shadow-none rounded-2xl">

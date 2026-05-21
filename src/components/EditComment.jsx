@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { Button, Form, Input, Label, Modal, Surface, TextField } from "@heroui/react";
 import { Edit2 } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -9,15 +10,16 @@ const EditComment = ({ comment }) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         const updateComemnt = e.target.comment.value
-        const updatedData ={
-            commentText:updateComemnt,
+        const updatedData = {
+            commentText: updateComemnt,
         }
-        console.log(updatedData)
-        console.log(updateComemnt)
-        const res = await fetch(`http://localhost:5000/comment/${comment._id}`, {
+        const { data: tokenData } = await authClient.token()
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/comment/${comment._id}`, {
             method: 'PATCH',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization:`Bearer ${tokenData.token}`
+
             }, body: JSON.stringify(updatedData)
         })
         if (res.ok) {

@@ -3,22 +3,29 @@
 import { authClient } from "@/lib/auth-client";
 import { AlertDialog, Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 
 export function DeleteButton({ idea }) {
     const router = useRouter()
     const handleDelete = async () => {
         const { data: tokenData } = await authClient.token()
-        const res = await fetch(`http://localhost:5000/myideas/${idea._id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/myideas/${idea._id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
                 authorization: `Bearer ${tokenData.token}`
             },
         })
-        const data = await res.json()
-        console.log(data)
-        router.refresh()
+       
+        if(res.ok){
+            toast.success('Your Idea Deleted Successfully')
+            router.refresh()
+        }
+        if(!res.ok){
+            toast.error('Error')
+            return
+        }
 
     }
     return (

@@ -4,6 +4,10 @@ import { Avatar, Button, Card } from '@heroui/react';
 import { headers } from 'next/headers';
 import React from 'react';
 
+export const metadata = {
+    title: "My Profile | IdeaVault",
+    description: "Manage your personal profile, update security setting.",
+};
 const Profile = async () => {
     const session = await auth.api.getSession({
         headers: await headers()

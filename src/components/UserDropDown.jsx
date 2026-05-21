@@ -39,23 +39,8 @@ export default function CustomTrigger({ user }) {
           </div>
         </div>
         <Dropdown.Menu>
-          <Dropdown.Item id="dashboard" textValue="Dashboard">
-            <Label>Dashboard</Label>
-          </Dropdown.Item>
           <Dropdown.Item href="/profile" id="profile" textValue="Profile">
             <Label>Profile</Label>
-          </Dropdown.Item>
-          <Dropdown.Item id="settings" textValue="Settings">
-            <div className="flex w-full items-center justify-between gap-2">
-              <Label>Settings</Label>
-              <Gear className="size-3.5 text-muted" />
-            </div>
-          </Dropdown.Item>
-          <Dropdown.Item href="/login" id="new-project" textValue="New project">
-            <div className="flex w-full items-center justify-between gap-2">
-              <Label>Create Team</Label>
-              <Persons className="size-3.5 text-muted" />
-            </div>
           </Dropdown.Item>
           <Dropdown.Item id="logout" textValue="Logout" variant="danger" onClick={handleSignout}>
             <div className="flex w-full items-center justify-between gap-2">

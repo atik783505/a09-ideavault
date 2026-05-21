@@ -1,11 +1,11 @@
 "use client";
 import { Button, Card, Description, FieldError, Form, Input, Label, TextField } from "@heroui/react";
 import Image from "next/image";
-import logo from '../../../public/images/ideavault_navbar (1).png'
+import logo from '../../../public/images/logo_transparent_final.png'
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Login() {
     const onSubmit = async (e) => {
@@ -33,16 +33,20 @@ export default function Login() {
         });
     }
 
-    // const handleGogle = async () => {
-    //     await authClient.signIn.social({
-    //         provider: "google",
-    //     });
-    // }
 
     return (
         <Card className="max-w-96 mx-auto my-4">
-            <div className="flex justify-center">
-                <Image src={logo} alt="logo" width={200} height={200}></Image>
+            <div className="flex items-center gap-2 justify-center select-none shrink-0">
+                <Image
+                    src={logo}
+                    alt="logo"
+                    width={50}
+                    height={50}
+                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 object-contain shrink-0"
+                />
+                <h4 className="text-blue-600 dark:text-blue-500 text-lg sm:text-xl md:text-2xl font-black tracking-tight">
+                    IdeaVault
+                </h4>
             </div>
             <h2 className="text-center font-bold text-[24px]">Login</h2>
             <Form className="flex flex-col gap-4" onSubmit={onSubmit}>
@@ -83,7 +87,7 @@ export default function Login() {
                 >
                     <Label>Password</Label>
                     <Input placeholder="Enter your password" />
-                    <Description>Must be at least 8 characters with 1 uppercase and 1 number</Description>
+                    <Description>Must be at least 6 characters with 1 uppercase and 1 number</Description>
                     <FieldError />
                 </TextField>
 
@@ -93,9 +97,18 @@ export default function Login() {
                     </Button>
                 </div>
             </Form>
-            <div className="mt-6">
-                <Button variant="outline" className='w-full rounded-none' onClick={handleGogle}>Continue With Google</Button>
+            <div className="flex items-center mt-4 w-full">
+                <hr className="flex-1 border-default-200 dark:border-default-100" />
+                <span className="px-3 text-xs font-medium uppercase text-default-400 tracking-wider shrink-0">
+                    OR
+                </span>
+                <hr className="flex-1 border-default-200 dark:border-default-100" />
             </div>
+            <div className="mt-6">
+
+                <Button variant="outline" className='w-full rounded-none' onClick={handleGogle}><FcGoogle />Continue With Google</Button>
+            </div>
+            <span className="text-blue-600 font-semibold hover:underline text-center">Forget Password</span>
             <h2 className="text-center text-slate-900/60 dark:text-white/60 text-sm font-medium">
                 Dont have an account?
                 <Link href="/register">

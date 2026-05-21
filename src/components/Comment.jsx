@@ -25,7 +25,7 @@ const Comment = ({ data, comments }) => {
             commentText
         }
         const { data: tokenData } = await authClient.token()
-        const res = await fetch('http://localhost:5000/comment', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/comment`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -48,7 +48,7 @@ const Comment = ({ data, comments }) => {
                     label="Comment"
                     placeholder="Tell us about yourself..."
                     variant="bordered"
-                    classNames={{
+                    className={{
                         base: "w-full",
                         input: "min-h-[100px]"
                     }}

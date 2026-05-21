@@ -18,7 +18,7 @@ const Showcomment = async ({ data }) => {
         headers: await headers()
     })
 
-    const res = await fetch(`http://localhost:5000/comment/${data._id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/comment/${data._id}`, {
         headers: {
             authorization: `Bearer ${token}`
         }

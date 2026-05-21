@@ -13,6 +13,7 @@ import {
     CardHeader,
 } from '@heroui/react';
 import { authClient, useSession } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
 
 const AddIdeaPage = () => {
     const [loading, setLoading] = useState(false);
@@ -33,17 +34,17 @@ const AddIdeaPage = () => {
             userImage: user?.image,
         }
 
+        if (ideaData.tags) {
+            ideaData.tags = ideaData.tags.split(',').map(tag => tag.trim());
+        }
         const finalData = {
             ...ideaData,
             ...userData
         }
 
-        if (ideaData.tags) {
-            ideaData.tags = ideaData.tags.split(',').map(tag => tag.trim());
-        }
         const { data: tokenData } = await authClient.token()
 
-        const res = await fetch('http://localhost:5000/ideas', {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/ideas`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -52,7 +53,11 @@ const AddIdeaPage = () => {
             body: JSON.stringify(finalData)
         })
         if (res.ok) {
-            alert('data added succes')
+            toast.success('Data Successfully Added')
+        }
+        if (!res.ok) {
+            toast.error('Error')
+            return
         }
 
 

@@ -15,7 +15,7 @@ export function IdeaUpdateModal({ idea }) {
         const formData = new FormData(e.currentTarget);
         const updatedIdeaData = Object.fromEntries(formData.entries());
          const {data:tokenData} = await authClient.token()
-        const res = await fetch(`http://localhost:5000/myideas/${idea._id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/myideas/${idea._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -24,6 +24,9 @@ export function IdeaUpdateModal({ idea }) {
         })
         if(res.ok){
             toast.success('Updated Succesfully')
+        }
+        if(!res.ok){
+            toast.error('Error')
         }
         router.refresh()
         

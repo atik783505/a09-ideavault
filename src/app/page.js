@@ -1,13 +1,16 @@
 import Banner from "@/components/Banner";
 import IdeaVaultFeatures from "@/components/IdeaVault1";
-import Image from "next/image";
+import ShareIdeaBox from "@/components/IdeaVault2";
+import TreandingIdeas from "@/components/TreandingIdeas";
+
 
 export default function Home() {
   return (
     <div>
       <Banner></Banner>
+      <TreandingIdeas></TreandingIdeas>
       <IdeaVaultFeatures></IdeaVaultFeatures>
-        <h2>this is home page</h2>
+      <ShareIdeaBox></ShareIdeaBox>
     </div>
   );
 }

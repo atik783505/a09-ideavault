@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const IdeaVaultFeatures = () => {
     return (
-        <section className="py-16 px-4 max-w-6xl mx-auto">
+        <section className="py-16 px-4 max-w-11/12 mx-auto">
 
             <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
@@ -66,7 +66,7 @@ const IdeaVaultFeatures = () => {
                         </div>
                     </div>
                     <Link href='/add-ideas'>
-                        <Button color="primary" variant="shadow" className="font-semibold shadow-primary-200">
+                        <Button className="font-semibold rounded-md">
                             + Add New Idea
                         </Button>
                     </Link>

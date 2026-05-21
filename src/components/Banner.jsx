@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Button } from '@heroui/react';
+import Link from 'next/link';
 
 const Banner = () => {
     const slides = [
@@ -61,14 +62,14 @@ const Banner = () => {
                             <p className="mt-4 text-sm md:text-medium text-default-500 max-w-xl leading-relaxed">
                                 {slide.description}
                             </p>
-                            <Button
-                                color="primary"
-                                variant="shadow"
-                                size="lg"
-                                className="mt-8 font-semibold px-8"
-                            >
-                                Explore Ideas
-                            </Button>
+                            <Link href='/all-ideas'>
+                                <Button
+                                    size="lg"
+                                    className="mt-8 font-semibold px-8 rounded-md"
+                                >
+                                    Explore Ideas
+                                </Button>
+                            </Link>
 
                         </div>
                     </SwiperSlide>
