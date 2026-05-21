@@ -1,7 +1,7 @@
 import { LogoFacebook, LogoGithub, LogoLinkedin, LogoLinux } from '@gravity-ui/icons';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { FaXTwitter } from 'react-icons/fa6';
-import logo from '../../public/images/ideavault_navbar (1).png'
+import logo from '../../public/images/logo_transparent_final.png'
 import Image from 'next/image';
 
 const Footer = () => {
@@ -12,7 +12,18 @@ const Footer = () => {
                 <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
 
                     <div className="space-y-4">
-                        <Image src={logo} alt='logo' width={400} height={400}></Image>
+                        <div className="flex items-center gap-2 select-none shrink-0">
+                            <Image
+                                src={logo}
+                                alt="logo"
+                                width={50}
+                                height={50}
+                                className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 object-contain shrink-0"
+                            />
+                            <h4 className="text-blue-600 dark:text-blue-500 text-lg sm:text-xl md:text-2xl font-black tracking-tight">
+                                IdeaVault
+                            </h4>
+                        </div>
                         <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed">
                             IdeaVault is a secure space to share your startup ideas, collaborate with a vibrant community of builders, and bring your unique vision to life.
                         </p>

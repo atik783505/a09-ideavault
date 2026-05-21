@@ -14,8 +14,8 @@ export default function Login() {
         const user = Object.fromEntries(formData.entries());
         console.log(user)
         const { data, error } = await authClient.signIn.email({
-            email: user.email, // required
-            password: user.password, // required
+            email: user.email, 
+            password: user.password, 
             callbackURL: '/',
         });
 

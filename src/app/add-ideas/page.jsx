@@ -154,13 +154,11 @@ const AddIdeaPage = () => {
                         </TextField>
                     </div>
 
-                    {/* Tags */}
                     <TextField name="tags" className="w-full flex flex-col gap-1.5">
                         <Label className="text-sm font-medium text-foreground">Tags (Optional)</Label>
                         <Input className="rounded-lg border-border/60" placeholder="e.g. saas, ai, productivity" />
                     </TextField>
 
-                    {/* Submit Button */}
                     <Button
                         type="submit"
                         variant="primary"

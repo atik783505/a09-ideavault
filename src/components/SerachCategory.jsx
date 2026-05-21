@@ -26,19 +26,18 @@ const SearchFilterBar = () => {
   return (
     <div className="w-full max-w-2xl mx-auto p-4 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-md rounded-2xl border border-gray-100 dark:border-zinc-800 shadow-sm flex flex-col sm:flex-row gap-3 items-center">
 
-      {/* Input Section */}
       <div className="relative w-full sm:flex-1">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4 pointer-events-none" />
         <input
           type="text"
           placeholder="Search by title..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)} // শুধু স্টেট আপডেট হবে
+          onChange={(e) => setSearch(e.target.value)} 
           className="w-full h-[42px] pl-9 pr-9 bg-gray-100/80 dark:bg-zinc-800/80 hover:bg-gray-200/50 dark:hover:bg-zinc-700/50 text-gray-700 dark:text-gray-200 placeholder-gray-400 rounded-xl border border-transparent outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm"
         />
         {search && (
           <button
-            onClick={() => setSearch('')} // শুধু স্টেট খালি করবে
+            onClick={() => setSearch('')} 
             className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
           >
             <X className="w-4 h-4" />
@@ -46,12 +45,11 @@ const SearchFilterBar = () => {
         )}
       </div>
 
-      {/* HeroUI v3 Select */}
       <Select
         className="w-full sm:w-[200px]"
         placeholder="All Categories"
         selectedKey={category || null}
-        onSelectionChange={(key) => setCategory(key ? String(key) : '')} // শুধু স্টেট আপডেট হবে
+        onSelectionChange={(key) => setCategory(key ? String(key) : '')}
       >
         <Select.Trigger className="w-full flex items-center justify-between bg-gray-100/80 dark:bg-zinc-800/80 hover:bg-gray-200/50 dark:hover:bg-zinc-700/50 text-gray-700 dark:text-gray-300 px-4 py-2.5 rounded-xl border border-transparent transition-all cursor-pointer text-sm outline-none data-[focused]:ring-2 data-[focused]:ring-blue-500 h-[42px]">
           <Select.Value />
