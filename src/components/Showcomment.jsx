@@ -53,7 +53,7 @@ const Showcomment = async ({ data }) => {
                                         referrerPolicy="no-referrer"
                                     />
                                     <Avatar.Fallback delayMs={600}>
-                                        {comment?.userName ? comment.userName.slice(0, 2).toUpperCase() : "JD"}
+                                        {comment.userName.slice(0, 2).toUpperCase()}
                                     </Avatar.Fallback>
                                 </Avatar>
 

@@ -30,7 +30,7 @@ export default function CustomTrigger({ user }) {
                 src={user?.image}
                 referrerPolicy="no-referrer"
               />
-              <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
+              <Avatar.Fallback delayMs={600}>{user.name.slice(0, 2).toUpperCase()}</Avatar.Fallback>
             </Avatar>
             <div className="flex flex-col gap-0">
               <p className="text-sm leading-5 font-medium">{user?.name}</p>

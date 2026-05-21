@@ -22,7 +22,7 @@ const Profile = async () => {
                         src={user?.image}
                         referrerPolicy="no-referrer"
                     />
-                    <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
+                    <Avatar.Fallback delayMs={600}>{user.name.slice(0, 2).toUpperCase()}</Avatar.Fallback>
                 </Avatar>
                 <h2 className='text-[20px]'>{user.name}</h2>
                 <p className='opacity-60 text-[14px]'>{user.email}</p>
