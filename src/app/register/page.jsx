@@ -25,6 +25,7 @@ export default function Signup() {
         if (data) {
             toast.success('Create Account Successfully')
             router.push('/')
+            router.refresh()
         }
         if (error) {
             toast.error('error')

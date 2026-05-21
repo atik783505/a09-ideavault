@@ -53,7 +53,7 @@ const AddIdeaPage = () => {
             body: JSON.stringify(finalData)
         })
         if (res.ok) {
-            toast.success('Data Successfully Added')
+            toast.success('Idea Successfully Added')
         }
         if (!res.ok) {
             toast.error('Error')

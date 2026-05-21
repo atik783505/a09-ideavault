@@ -2,7 +2,7 @@
 
 IdeaVault is a secure, high-performance full-stack web application built with **Next.js**, designed for thinkers, innovators, and creators to seamlessly capture, organize, and manage their groundbreaking ideas. This project leverages advanced server and client-side architecture to deliver a smooth and highly secure user experience.
 
-🔗 **Live Site URL:** [https://ideavault-app.vercel.app](https://ideavault-app.vercel.app)
+🔗 **Live Site URL:** https://a09-ideavault.vercel.app/
 
 ---
 
