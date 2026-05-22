@@ -95,8 +95,8 @@ export default function Signup() {
                         if (!/[A-Z]/.test(value)) {
                             return "Password must contain at least one uppercase letter";
                         }
-                        if (!/[0-9]/.test(value)) {
-                            return "Password must contain at least one number";
+                        if (!/[a-z]/.test(value)) {
+                            return "Password must contain at least one lowercase letter";
                         }
 
                         return null;
@@ -104,7 +104,7 @@ export default function Signup() {
                 >
                     <Label>Password</Label>
                     <Input placeholder="Enter your password" />
-                    <Description>Must be at least 6 characters with 1 uppercase and 1 number</Description>
+                    <Description>Must be at least 6 characters with 1 uppercase and 1 lowercase</Description>
                     <FieldError />
                 </TextField>
 
