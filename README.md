@@ -19,9 +19,9 @@ IdeaVault is a secure, high-performance full-stack web application built with **
 ## 🛠️ Tech Stack
 
 * **Framework:** Next.js (App Router)
-* **Language:** JavaScript / TypeScript
-* **Authentication:** Next Auth / Custom Auth & JWT (Json Web Tokens)
+* **Language:** JavaScript
+* **Authentication:** Better Auth & JWT (Json Web Tokens)
 * **Styling:** Tailwind CSS
-* **Database/Backend:** MongoDB / Serverless APIs
+* **Database/Backend:** MongoDB 
 
 ---
