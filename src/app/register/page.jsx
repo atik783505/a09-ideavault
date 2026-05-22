@@ -4,12 +4,10 @@ import Image from "next/image";
 import logo from '../../../public/images/logo_transparent_final.png'
 import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 
 export default function Signup() {
-    const router = useRouter()
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -24,8 +22,7 @@ export default function Signup() {
 
         if (data) {
             toast.success('Create Account Successfully')
-            router.push('/')
-            router.refresh()
+            window.location.assign('/');
         }
         if (error) {
             toast.error('error')

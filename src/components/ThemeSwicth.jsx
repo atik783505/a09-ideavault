@@ -1,35 +1,34 @@
 "use client";
-import { Moon, Sun } from "@gravity-ui/icons";
-import { Switch } from "@heroui/react";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { Moon, Sun } from "@gravity-ui/icons";
 
-const ThemeSwicth = () => {
+const ThemeSwitch = () => {
     const { theme, setTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return <div className="p-2 size-9 rounded-lg bg-default-100 animate-pulse"></div>;
+    }
+
+    const isDark = theme === "dark";
+
     return (
-        <div>
-            <Switch onChange={() => setTheme(theme === "dark" ? "light" : "dark")}>
-                {({ isSelected }) => (
-                    <>
-                        <Switch.Control
-                            className={`h-[31px] w-[51px] bg-blue-500 ${isSelected ? "bg-cyan-500 shadow-[0_0_12px_rgba(6,182,212,0.5)]" : ""}`}
-                        >
-                            <Switch.Thumb
-                                className={`size-[27px] bg-white shadow-sm ${isSelected ? "ms-[22px] shadow-lg" : ""}`}
-                            >
-                                <Switch.Icon>
-                                    {isSelected ? (
-                                        <Sun className="size-4 text-cyan-600" />
-                                    ) : (
-                                        <Moon className="size-4 text-blue-600" />
-                                    )}
-                                </Switch.Icon>
-                            </Switch.Thumb>
-                        </Switch.Control>
-                    </>
-                )}
-            </Switch>
-        </div>
+        <button
+            onClick={() => setTheme(isDark ? "light" : "dark")}
+            className="p-2 rounded-xl transition-all duration-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 flex items-center justify-center border border-border/40"
+            aria-label="Toggle Theme"
+        >
+            {isDark ? (
+                <Sun className="size-5 text-amber-500 transition-transform duration-300 rotate-0 scale-100" />
+            ) : (
+                <Moon className="size-5 text-blue-600 transition-transform duration-300 rotate-0 scale-100" />
+            )}
+        </button>
     );
 };
 
-export default ThemeSwicth;
+export default ThemeSwitch;

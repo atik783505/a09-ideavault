@@ -1,6 +1,7 @@
 
 import MyideaCard from '@/components/MyideaCard';
 import { auth } from '@/lib/auth';
+import { Card } from '@heroui/react';
 import { headers } from 'next/headers';
 import React from 'react';
 
@@ -31,12 +32,12 @@ const Myideas = async () => {
             <h2 className="font-bold text-[40px] text-center mb-6">My Ideas</h2>
             {
                 data.length === 0 ? (
-                    <div className="text-center">
+                    <Card className="text-center">
                         <h2 className="text-2xl font-bold text-slate-700 mb-2">No Ideas Available</h2>
                         <p className="text-slate-500 text-sm max-w-sm mx-auto">
                             Your creative vault is currently empty. Start capturing your brilliant thoughts!
                         </p>
-                    </div>
+                    </Card>
                 ) : (
 
                     <div className="grid grid-cols-1 gap-4">
