@@ -23,7 +23,7 @@ export default function Login() {
             toast.success('Login Successfully')
         }
         if (error) {
-            toast.error('failed')
+            toast.error('Invalid Password or Email')
         }
     };
 
@@ -71,19 +71,6 @@ export default function Login() {
                     minLength={6}
                     name="password"
                     type="password"
-                    validate={(value) => {
-                        if (value.length < 6) {
-                            return "Password must be at least 6 characters";
-                        }
-                        if (!/[A-Z]/.test(value)) {
-                            return "Password must contain at least one uppercase letter";
-                        }
-                        if (!/[0-9]/.test(value)) {
-                            return "Password must contain at least one number";
-                        }
-
-                        return null;
-                    }}
                 >
                     <Label>Password</Label>
                     <Input placeholder="Enter your password" />

@@ -25,7 +25,7 @@ export default function Signup() {
             window.location.assign('/');
         }
         if (error) {
-            toast.error('error')
+            toast.error('Register Error')
         }
     };
 

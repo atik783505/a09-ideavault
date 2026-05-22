@@ -37,11 +37,11 @@ export function DeleteButton({ idea }) {
                         <AlertDialog.CloseTrigger />
                         <AlertDialog.Header>
                             <AlertDialog.Icon status="danger" />
-                            <AlertDialog.Heading>Delete destination permanently?</AlertDialog.Heading>
+                            <AlertDialog.Heading>Delete Idea permanently?</AlertDialog.Heading>
                         </AlertDialog.Header>
                         <AlertDialog.Body>
                             <p>
-                                This will permanently delete <strong>My Awesome Project</strong> and all of its
+                                This will permanently delete <strong>My Awesome Idea</strong> and all of its
                                 data. This action cannot be undone.
                             </p>
                         </AlertDialog.Body>
@@ -50,7 +50,7 @@ export function DeleteButton({ idea }) {
                                 Cancel
                             </Button>
                             <Button onClick={handleDelete} slot="close" variant="danger">
-                                Delete Destination
+                                Delete Idea
                             </Button>
                         </AlertDialog.Footer>
                     </AlertDialog.Dialog>
